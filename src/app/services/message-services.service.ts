@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IRequest } from '../interfaces/IRequest';
+import { IResponse } from '../interfaces/IResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,7 @@ export class MessageServicesService {
 
   constructor(private _http : HttpClient) { }
 
-  messageList(request:IRequest): Observable<Response> {
-    request.id = 1;
-    request.mes = 2;
-    return this._http.post<Response>(this.url, request);
+  messageList(request:IRequest): Observable<IResponse> {
+    return this._http.post<IResponse>(this.url, request);
   }
 }
