@@ -47,9 +47,9 @@ export class AppComponent {
     var error = this.estructura.find((x: { estadoEnvio: number; }) => x.estadoEnvio === 3);
     var data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
-        ['Cantidad de mensajes Pendientes', pendientes === undefined ? 0: pendientes.cantidad],
         ['Cantidad de mensajes Enviados', enviados === undefined? 0: enviados.cantidad],
-        ['Cantidad de mensajes con Error', error === undefined? 0 : error.cantidad]
+        ['Cantidad de mensajes con Error', error === undefined? 0 : error.cantidad],
+        ['Cantidad de mensajes Pendientes', pendientes === undefined ? 0: pendientes.cantidad]
       ]
     );
 
