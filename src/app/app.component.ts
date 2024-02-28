@@ -33,6 +33,7 @@ export class AppComponent {
   constructor(public messageServices: MessageServicesService) { }
 
   ngOnInit(): void {
+    //inicializar libreria de google charts
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(() => {
       this.ListMessage();
