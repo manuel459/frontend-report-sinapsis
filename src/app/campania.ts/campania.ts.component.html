@@ -8,8 +8,15 @@
     Escribe un nombre
     </span>
 <br>
-  <label for="idUsuario">ID de Usuario:</label>
-  <input type="text" id="idUsuario" formControlName="idUsuario">
+  <label for="idUsuario">Usuario:</label>
+  <br>
+  <mat-form-field class="example-form" appearance="fill">
+    <mat-select class="form-control" required matInput formControlName="idUsuario" matNativeControl required>
+      <mat-option *ngFor="let user of listaUsuarios" [value]="user.idUsuario">
+        {{user.usuario}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <span class="text-danger" 
     *ngIf="registerFormControl.idUsuario.errors?.required">
     Escribe un ID Valido

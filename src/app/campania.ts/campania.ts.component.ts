@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CampaniaTsService } from '../services/campania.ts.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
+import { UsuariosService } from '../services/usuarios.service';
+import { IListUsers } from '../interfaces/IListUsers';
 
 @Component({
   selector: 'app-campania.ts',
@@ -11,7 +13,9 @@ import Swal from 'sweetalert2';
 })
 export class CampaniaTsComponent implements OnInit {
   public formulario: FormGroup | any;
-  constructor(public dialogRef: MatDialogRef<CampaniaTsComponent>, private fb: FormBuilder,public campaniaServices: CampaniaTsService) {
+  listaUsuarios : IListUsers[] = []
+  constructor(public dialogRef: MatDialogRef<CampaniaTsComponent>, private fb: FormBuilder,public campaniaServices: CampaniaTsService, public usuariosServices : UsuariosService) {
+    this.usuariosServices.getUsuarios().subscribe(x => this.listaUsuarios = x.body);
     this.formulario = this.fb.group({
       nombre: ['', Validators.required],
       idUsuario: [1, [Validators.required]],
