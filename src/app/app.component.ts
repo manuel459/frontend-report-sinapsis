@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MessageServicesService } from './services/message-services.service';
 import { IRequest } from './interfaces/IRequest';
 import { IMessageEstructure } from './interfaces/IMessageEstructure';
+import { CampaniaTsComponent } from './campania.ts/campania.ts.component';
+import { MatDialog } from '@angular/material/dialog';
 declare var google: any;
 
 @Component({
@@ -30,7 +32,7 @@ export class AppComponent {
     { nombre: "Noviembre", id: 11 },
     { nombre: "Diciembre", id: 12 }
   ]
-  constructor(public messageServices: MessageServicesService) { }
+  constructor(public messageServices: MessageServicesService, public matDialog: MatDialog) { }
 
   ngOnInit(): void {
     //inicializar libreria de google charts
@@ -72,6 +74,14 @@ export class AppComponent {
       this.graficDonut();
     });
   }
+
+  insertCampania(){
+    this.matDialog.open(CampaniaTsComponent,{
+      width: "800px"
+    }).afterClosed().subscribe(x => {
+    });
+  }
+
 
   title = 'reporte-sinapsis';
 }

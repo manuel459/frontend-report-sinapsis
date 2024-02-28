@@ -8,10 +8,14 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { CampaniaTsComponent } from './campania.ts/campania.ts.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CampaniaTsComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,9 @@ import {MatIconModule} from '@angular/material/icon'
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

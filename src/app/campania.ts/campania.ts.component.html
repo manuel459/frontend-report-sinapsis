@@ -1,0 +1,28 @@
+<strong style="width: 300px;">Crear Campaña</strong>
+
+<form [formGroup]="formulario" (ngSubmit)="insertCampania()">
+    <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" formControlName="nombre">
+  <span class="text-danger" 
+    *ngIf="registerFormControl.nombre.errors?.required">
+    Escribe un nombre
+    </span>
+<br>
+  <label for="idUsuario">ID de Usuario:</label>
+  <input type="text" id="idUsuario" formControlName="idUsuario">
+  <span class="text-danger" 
+    *ngIf="registerFormControl.idUsuario.errors?.required">
+    Escribe un ID Valido
+    </span>
+<br>
+  <label for="fechaHoraProgramacion">Fecha de Programacion:</label>
+  <input type="date" id="fechaHoraProgramacion" formControlName="fechaHoraProgramacion">
+  <span class="text-danger" 
+    *ngIf="registerFormControl.fechaHoraProgramacion.errors?.required">
+    Por favor elige una fecha
+    </span>
+<br>
+  <input [disabled]="this.formulario.invalid" type="submit" value="Agregar">
+</form>
+
+<button class="button" (click)="close()">Regresar</button>
