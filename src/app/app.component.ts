@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MessageServicesService } from './services/message-services.service';
 import { IRequest } from './interfaces/IRequest';
 import { IMessageEstructure } from './interfaces/IMessageEstructure';
-import { FormControl } from '@angular/forms';
 declare var google: any;
 
 @Component({
@@ -12,8 +11,9 @@ declare var google: any;
 })
 export class AppComponent {
   filterClient: boolean = false;
-  foodControl = new FormControl();
+  // SELECTOR DEL MES
   selectedValue: string | any = null;
+  // VALOR DEL INPUT NOMBRE DEL CLIENTE
   value: string  | any;
   estructura: IMessageEstructure[] | any;
   meses = [
@@ -40,12 +40,10 @@ export class AppComponent {
   }
 
   graficDonut() {
+    //ESTABLECER LOS PARAMETROS EN BASE AL RESPONSE DEL METODO LISTMESSAGE
     var pendientes = this.estructura.find((x: { estadoEnvio: number; })=> x.estadoEnvio === 1);
     var enviados = this.estructura.find((x: { estadoEnvio: number; }) => x.estadoEnvio === 2);
     var error = this.estructura.find((x: { estadoEnvio: number; }) => x.estadoEnvio === 3);
-    console.log(pendientes);
-    console.log(enviados);
-    console.log(error);
     var data = google.visualization.arrayToDataTable([
         ['Task', 'Hours per Day'],
         ['Cantidad de mensajes Pendientes', pendientes === undefined ? 0: pendientes.cantidad],
@@ -66,13 +64,10 @@ export class AppComponent {
   }
 
   ListMessage(){
-    console.log(this.value)
-    console.log(this.selectedValue)
+    //Inicializar request en base al value (nombre del cliente) y el selectValue (Mes)
     const request :IRequest = { nombreCliente: this.filterClient?this.value:"" , mes: this.selectedValue};
     this.messageServices.messageList(request).subscribe(response => {
-      console.log(response);
       this.estructura = response.body;
-      console.log(this.estructura);
       this.graficDonut();
     });
   }
